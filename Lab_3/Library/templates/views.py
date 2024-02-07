@@ -21,3 +21,7 @@ def view_books_year(request, bookyear):
 def view_by_category(request, bookcategory):
     books_by_category = Book.objects.filter(category=bookcategory)
     return render(request, 'all_books.html', {'books':books_by_category})
+
+def view_by_candy(request, bookyear, bookcategory):
+    books_by_candy = Book.objects.filter(year = bookyear, category =bookcategory)
+    return render(request, 'all_books.html', {'books':books_by_candy})
