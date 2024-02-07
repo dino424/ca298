@@ -7,5 +7,6 @@ urlpatterns = [
    path('books/<int:bookid>', views.view_single_book, name='single_book'),
    path('books/year/<int:bookyear>', views.view_books_year, name='books_by_year'),
    path('books/category/<str:bookcategory>', views.view_by_category, name='books_by_category'),
-   path('books/category/<str:bookcategory>/<int:bookyear>', views.view_by_candy, name='books_by_candy')
+   path('books/category/<str:bookcategory>/<int:bookyear>', views.view_by_candy, name='books_by_candy'),
+   path('createbook', views.createbook, name='create_book')
 ]
