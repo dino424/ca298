@@ -1,0 +1,14 @@
+<html>
+    <head>
+        {% block title %}
+            Library <!-- Default title if non is supplied by another template -->
+        {% endblock %}
+    </head>
+    <body>
+        {% block content %}
+            <h1>{{ book.title }}</h1>
+            <h2>{{ book.author }} {{book.year}}, ( {{ book.price}} )</h2>
+            <h4>{{ book.synopsis}}</h4>
+        {% endblock %}
+    </body>
+</html> 
