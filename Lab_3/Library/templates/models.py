@@ -9,3 +9,4 @@ class Book(models.Model):
     price = models.DecimalField(max_digits = 3, decimal_places = 2, default = 0.0)
     title = models.TextField()
     synopsis = models.TextField()
+    category = models.TextField(default="fun")
