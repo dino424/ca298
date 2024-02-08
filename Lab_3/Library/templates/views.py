@@ -1,7 +1,7 @@
-from django.shortcuts import render
+from django.shortcuts import render, get_object_or_404, get_list_or_404
 from django.http import HttpResponse
-from django.shortcuts import get_object_or_404, get_list_or_404
 from .models import *
+from .forms import *
 
 def index(request):
     return render(request, 'index.html')
@@ -29,3 +29,25 @@ def view_by_candy(request, bookyear, bookcategory):
 def createbook(request):
     if request.method == 'POST':
         form = Bookform(request.POST)
+        if form.is_valid():
+            bk = form.save(commit=False)
+            return render(request, 'created.html', {'bk':bk})
+        else:
+            return render(request, 'create_bk.html', {'form':form})
+    else:
+        form = Bookform()
+        return render(request, 'create_bk.html', {'form':form})
+
+def book_update(request, bookid):
+    book = get_object_or_404(Book, id=bookid)
+    if request.method=="POST":
+        form = Bookform(request.POST, instance=book)
+        if form.is_valid():
+            form.save()
+            return render(request, 'update_confirmation.html', {'book':book})
+        else:
+            return render(request, 'create_bk.html', {'form':form})
+    else:
+        form = Bookform(instance=book)
+        return render(request, 'create_bk.html', {'form':form})   
+

@@ -1,7 +1,5 @@
 from django.db import models
 
-# log out next time pal
-
 class Book(models.Model):
     id = models.IntegerField(primary_key = True)
     year = models.IntegerField()
