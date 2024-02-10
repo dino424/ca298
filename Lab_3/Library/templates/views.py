@@ -1,5 +1,10 @@
-from django.shortcuts import render, get_object_or_404, get_list_or_404
+from django.shortcuts import render, get_object_or_404, get_list_or_404, redirect
 from django.http import HttpResponse
+from django.views.generic import CreateView
+from django.contrib.auth import login, logout
+from django.contrib.auth.views import LoginView
+from django.contrib.auth.decorators import login_required
+
 from .models import *
 from .forms import *
 
@@ -51,3 +56,36 @@ def book_update(request, bookid):
         form = Bookform(instance=book)
         return render(request, 'create_bk.html', {'form':form})   
 
+class UserSignupView(CreateView):
+    model = User
+    form_class = UserSignupForm
+    template_name = 'user_signup.html'
+
+    def get_context_data(self, **kwargs):
+        return super().get_context_data(**kwargs)
+
+    def form_valid(self, form):
+        user = form.save()
+        login(self.request, user)
+        return redirect('/')
+
+class UserLoginView(LoginView):
+    template_name='login.html'
+
+def logout_user(request):
+    logout(request)
+    return redirect("/")
+
+def open_view(request)
+   ...
+
+@login_required
+def locked_view(request):
+	... 
+
+def some_view(request):
+   user = rtequest.user
+   if user.is_authenticated:
+      pass
+   else:
+     return redirect("/")
