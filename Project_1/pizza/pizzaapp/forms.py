@@ -13,7 +13,7 @@ class UserSignupForm(UserCreationForm):
     def save(self):
         user = super().save(commit=False)
         user.is_admin = False
-				user.email = self.cleaned_data['username']
+        user.email  = self.cleaned_data['username']
         user.save()
         return user
 

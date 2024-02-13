@@ -74,14 +74,14 @@ class UserLoginView(LoginView):
 
 def logout_user(request):
     logout(request)
-    return redirect("/")
+    return redirect("/books")
 
-def open_view(request)
-   ...
+def open_view(request):
+   pass
 
 @login_required
 def locked_view(request):
-	... 
+	pass
 
 def some_view(request):
    user = rtequest.user
