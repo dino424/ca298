@@ -4,6 +4,8 @@ from django.shortcuts import render, redirect
 from django.contrib.auth import login, logout
 from django.contrib.auth.views import LoginView
 from django.contrib.auth.forms import UserCreationForm
+from django.urls import path, include
+from . import views
 from .forms import *
 
 def index(request):
@@ -20,7 +22,7 @@ class UserSignupView(CreateView):
     def form_valid(self, form):
         user = form.save()
         login(self.request, user)
-        return redirect('')
+        return redirect("/")
 
 
 class UserLoginView(LoginView):

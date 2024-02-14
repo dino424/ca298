@@ -74,7 +74,7 @@ class UserLoginView(LoginView):
 
 def logout_user(request):
     logout(request)
-    return redirect("/books")
+    return redirect("/")
 
 def open_view(request):
    pass

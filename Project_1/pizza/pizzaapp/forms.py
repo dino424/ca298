@@ -2,7 +2,7 @@
 from django.contrib.auth.forms import UserCreationForm, AuthenticationForm
 from django import forms
 from django.forms import ModelForm, ModelChoiceField
-from .models import User
+from .models import *
 from django.db import transaction
 
 class UserSignupForm(UserCreationForm):
