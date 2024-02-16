@@ -1,79 +1,38 @@
 from django.db import models
 
-# Create your models here.
-
-
 class Pizza(models.Model):
     id = models.AutoField(primary_key=True)
-    small = 'S'
-    medium = 'M'
-    large = 'L'
-    extralarge = 'XL'
-    size_choices = [
-        (small, 'Small'),
-        (medium, 'Medium'),
-        (large, 'Large'),
-        (extralarge, 'extra-large'),
-    ]
-
-    sizes = models.CharField(
-        max_length=2,
-        choices=size_choices,
-        default=medium,
+    sizes = models.ForeignKey(
+        'Sizes',
+        on_delete=models.CASCADE,
     )
-
-    normal_crust = 'NC'
-    thin_crust = 'TNC'
-    thick_crust = 'TKC'
-    glutenfree_crust = 'GFC'
-    crust_choices = [
-        (normal_crust, 'Normal Crust'),
-        (thin_crust, 'Thin crust'),
-        (thick_crust, 'Thick crust'),
-        (glutenfree_crust, 'Gluten free crust'),
-    ]
-
-    crusts = models.CharField(
-        max_length=3,
-        choices=crust_choices,
-        default=normal_crust,
+    cheeses = models.ForeignKey(
+        'Cheeses',
+        on_delete=models.CASCADE,
     )
-
-
-    mozzarella_cheese = 'MZCH'
-    vegan_cheese = 'VCH'
-    lowfat_cheese = 'LFCH'
-    cheese_choices = [
-        (mozzarella_cheese, 'Mozzarella'),
-        (vegan_cheese, 'Vegan cheese'),
-        (lowfat_cheese, 'low fat cheese')
-    ]
-
-    cheeses = models.CharField(
-        max_length=4,
-        choices=cheese_choices,
-        default=mozzarella_cheese,
+    sauces = models.ForeignKey(
+        'Sauces',
+        on_delete=models.CASCADE,
     )
+    pepperoni = models.BooleanField(default=False)
+    chicken = models.BooleanField(default=False)
+    ham = models.BooleanField(default=False)
+    pineapple = models.BooleanField(default=False)
+    peppers = models.BooleanField(default=False)
+    mushrooms = models.BooleanField(default=False)
+    onions = models.BooleanField(default=False)
 
+class Sizes(models.Model):
+    name = models.CharField(max_length= 20, default='medium')
+    def __str__(self):
+        return self.name
 
-    pepperoni = 'P'
-    chicken = 'C'
-    ham = 'H'
-    pineapple = 'PL'
-    peppers = 'PE'
-    mushrooms = 'M'
-    onions = 'O'
-    topping_choices = [
-        (pepperoni, 'Pepperoni'),
-        (chicken, 'Chicken'),
-        (ham, 'Ham'),
-        (pineapple, 'Pineapple'),
-        (peppers, 'Mushroomd'),
-        (onions, 'Onions'),
-    ]
+class Cheeses(models.Model):
+    name = models.CharField(max_length= 20, default='mozzarella')
+    def __str__(self):
+        return self.name
 
-    toppings = models.CharField(
-        max_length=2,
-        choices=topping_choices,
-        default=pepperoni,
-    )
+class Sauces(models.Model):
+    name = models.CharField(max_length= 20, default='tomato')
+    def __str__(self):
+        return self.name
