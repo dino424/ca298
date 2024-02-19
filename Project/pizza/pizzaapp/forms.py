@@ -10,7 +10,18 @@ class PizzaForm(forms.ModelForm):
     class Meta:
         model = Pizza
         fields = ['sizes', 'cheeses', 'sauces','pepperoni', 'chicken', 'ham', 'pineapple', 'peppers', 'mushrooms', 'onions']
-   
+    def clean(self):
+        data = self.cleaned_data
+        sizes = data['sizes']
+        cheeses = data['cheeses']
+        sauces = data['sauces']
+        pepperoni = data['pepperoni']
+        chicken = data['chicken']
+        ham = data['ham']
+        pineapple = data['pineapple']
+        peppers = data['peppers']
+        mushrooms = data['mushrooms']
+        onions = data['onions']
 
 class UserSignupForm(UserCreationForm):
     class Meta(UserCreationForm.Meta):

@@ -89,6 +89,7 @@ class Basket(models.Model):
     user = models.ForeignKey(User, on_delete=models.CASCADE)
     date_ordered = models.DateTimeField(null=True)
     total_price = models.DecimalField(max_digits=10, decimal_places=2)
+    pizzas = models.ManyToManyField('Pizza', through='PizzaBasket')
 
 class PizzaBasket(models.Model):
     id = models.AutoField(primary_key=True)

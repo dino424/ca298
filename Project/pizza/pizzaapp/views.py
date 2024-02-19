@@ -38,7 +38,7 @@ class UserSignupView(CreateView):
     def form_valid(self, form):
         user = form.save()
         login(self.request, user)
-        return redirect('/')
+        return redirect('/yourpizzas')
 
 class UserLoginView(LoginView):
     template_name='login.html'
@@ -49,7 +49,7 @@ class UserLoginView(LoginView):
 
 def logout_user(request):
     logout(request)
-    return redirect("/")
+    return redirect("/yourpizzas")
 
 @login_required
 def buy_pizza(request, pizzaid):
