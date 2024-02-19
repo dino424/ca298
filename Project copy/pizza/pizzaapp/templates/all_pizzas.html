@@ -1,0 +1,19 @@
+{% extends "base.html" %}
+{% block title %}
+  <!-- the page title goes here --> 
+{% endblock title%}
+
+{% block content %}
+    {% for p in pizzas %}
+    <div class="container">
+        <div class="card" style="width: 18rem;">
+              <div class="card-body">
+                <h5 class="card-title">PIZZA!!</h5>
+                <h6 class="card-subtitle mb-2 text-muted">{{ p.get_sizes_display}}</h6>
+                <p class="card-text">{{ p.get_crusts_display }}, {{ p.get_toppings_display }}, {{ p.get_cheeses_display }}</p>
+            </div>
+        </div>
+    </div>
+    {% endfor %}
+
+{% endblock content%}

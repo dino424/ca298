@@ -77,25 +77,3 @@ class User(AbstractUser):
     USERNAME_FIELD = 'email'
     REQUIRED_FIELDS = []
     objects = UserManager()
-
-class PizzaUser(models.Model):
-    id = models.AutoField(primary_key=True)
-    pizza = models.ForeignKey(Pizza, on_delete=models.CASCADE)
-    user = models.ForeignKey(User, on_delete=models.CASCADE)
-    date_ordered = models.DateTimeField(auto_now_add=True)
-
-class Basket(models.Model):
-    id = models.AutoField(primary_key=True)
-    user = models.ForeignKey(User, on_delete=models.CASCADE)
-    date_ordered = models.DateTimeField(null=True)
-    total_price = models.DecimalField(max_digits=10, decimal_places=2)
-
-class PizzaBasket(models.Model):
-    id = models.AutoField(primary_key=True)
-    pizza = models.ForeignKey(Pizza, on_delete=models.CASCADE)
-    basket = models.ForeignKey(Basket, on_delete=models.CASCADE)
-    quantity = models.IntegerField(default=1)
-    unit_price = models.DecimalField(max_digits=10, decimal_places=2)
-
-    def total_price(self):
-        return self.quantity * self.unit_price
