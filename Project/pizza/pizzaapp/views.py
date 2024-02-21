@@ -6,6 +6,7 @@ from django.contrib.auth.views import LoginView
 from django.contrib.auth.decorators import login_required
 from .models import * 
 from .forms import * 
+import re
 
 def index(request):
     return render(request, 'index.html')
@@ -20,13 +21,32 @@ def create_pizza(request):
         form = PizzaForm(request.POST)
         if form.is_valid():
             piz = form.save() 
-            return render(request, 'delivery.html')
+            return redirect(f'order/{piz.id}')
         else:
             return render(request, 'create_piz.html', {'form': form})
     else:
         form = PizzaForm()
         return render(request, 'create_piz.html', {'form': form})
 
+
+@login_required
+def order_pizza(request, pizzaid):
+    pizza = get_object_or_404(Pizza, id=pizzaid)
+    user = request.user
+    if request.method == "POST":
+        form = OrderForm(request.POST)
+        if form.is_valid():
+            ord = form.save(commit=False)
+            ord.user = user
+            ord.pizza = pizza
+            ord.save()
+            return redirect('created', orderid=ord.id)  # Use the 'id' attribute instead of 'orderid'
+        else:
+            return render(request, 'order.html', {'form': form, 'pizzaid': pizzaid})
+    else:
+        form = OrderForm()
+        return render(request, 'order.html', {'form': form, 'pizzaid': pizzaid})
+    
 class UserSignupView(CreateView):
     model = User
     form_class = UserSignupForm
@@ -42,32 +62,20 @@ class UserSignupView(CreateView):
 
 class UserLoginView(LoginView):
     template_name='login.html'
-    def form_valid(self, form):
-        login(self.request, user)
-        return redirect('/')
 
 
 def logout_user(request):
     logout(request)
-    return redirect("/yourpizzas")
+    return redirect("/")
 
-@login_required
-def buy_pizza(request, pizzaid):
-    # get the pizza (or 404)
-    pizza = get_object_or_404(Pizza, id=pizzaid)
-    # get the user 
+
+def yourpizzas(request):
     user = request.user
-    # create a new isntance of PizzaUser
-    newPizzaUser = PizzaUser.objects.create(pizza=pizza, user=user)
-    newPizzaUser.save()
-    # show some confirmation
-    return render(request, 'confirmation.html', { 
-                                                 'pizza': pizza, 'pizzauser': newPizzaUser})
-
-@login_required
-def previous_orders(request):
-    user = request.user
-    yourpizzas = PizzaUser.objects.filter(user=user)
-    return render(request, 'previous_orders.html', {'yourpizzas':yourpizzas})
+    pizzas = Order.objects.filter(user=user)
+    return render(request, 'yourpizzas.html', {'pizzas':pizzas})
 
 
+
+def view_created(request, orderid):
+    order = get_object_or_404(Order, id=orderid)
+    return render(request, 'created.html', {'order':order})

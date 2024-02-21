@@ -1,10 +1,8 @@
 {% extends 'base.html' %}
-
-
 {% block content %}
     <form action="" method="POST">
         {% csrf_token %}
         {{ form.as_table }}
-        <button type="ORDER">Create Pizza</button>
+        <button type="create">Create Pizza</button>
     </form>
 {% endblock %}
