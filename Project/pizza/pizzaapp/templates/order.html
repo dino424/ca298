@@ -8,6 +8,6 @@
     <form action="." method="POST">
     {% csrf_token %}
     {{ form.as_table }}
-    <button type="submit">Order </button>
+    <button type="submit" class="btn btn-primary btn-block" active >Order </button>
     </form>
 {%  endblock %}

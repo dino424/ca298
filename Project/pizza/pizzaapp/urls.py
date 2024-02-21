@@ -12,5 +12,5 @@ urlpatterns = [
    path('logout/', views.logout_user, name="logout"),
    path('yourpizzas', views.yourpizzas, name="yourpizzas"),
    path('order/<int:pizzaid>/', views.order_pizza, name="order"),
-   path('created/<int:orderid>', views.view_created, name='created'),
+   path('created/<int:orderid>/', views.view_created, name='created'),
 ]

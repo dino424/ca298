@@ -5,9 +5,9 @@
 {% endblock %}
 
 {%  block content %}
-    <form action="." method="POST">
+    <form class=" row" action="." method="POST">
     {% csrf_token %}
     {{ form.as_table }}
-    <button type="submit">SUBMIT</button>
+    <button type="submit" class="btn btn-primary btn-block" active>SUBMIT</button>
     </form>
 {%  endblock %}

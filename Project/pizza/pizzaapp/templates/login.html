@@ -8,6 +8,7 @@
     <form action="." method="POST">
     {% csrf_token %}
     {{ form.as_table }}
-    <button type="submit">SUBMIT</button>
+    <input type="text" class="form-control" id="email" placeholder="Enter email" name="email">
+    <button type="submit" class="btn btn-primary btn-block" active>SUBMIT</button>
     </form>
 {%  endblock %}
