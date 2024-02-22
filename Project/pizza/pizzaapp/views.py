@@ -15,7 +15,7 @@ def view_all_pizzas(request):
     all_pizzas = Pizza.objects.all()
     return render(request, 'all_pizzas.html', {'pizzas':all_pizzas})
 
-@login_required
+@login_required(redirect_field_name="login")
 def create_pizza(request):
     if request.method == "POST":
         form = PizzaForm(request.POST)
@@ -29,7 +29,7 @@ def create_pizza(request):
         return render(request, 'create_piz.html', {'form': form})
 
 
-@login_required
+@login_required(redirect_field_name="login")
 def order_pizza(request, pizzaid):
     pizza = get_object_or_404(Pizza, id=pizzaid)
     user = request.user
@@ -40,7 +40,7 @@ def order_pizza(request, pizzaid):
             ord.user = user
             ord.pizza = pizza
             ord.save()
-            return redirect('created', orderid=ord.id)  # Use the 'id' attribute instead of 'orderid'
+            return redirect('created', orderid=ord.id)
         else:
             return render(request, 'order.html', {'form': form, 'pizzaid': pizzaid})
     else:
@@ -68,7 +68,7 @@ def logout_user(request):
     logout(request)
     return redirect("/")
 
-
+@login_required(redirect_field_name="login")
 def yourpizzas(request):
     user = request.user
     pizzas = Order.objects.filter(user=user)

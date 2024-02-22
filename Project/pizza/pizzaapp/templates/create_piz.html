@@ -1,8 +1,13 @@
 {% extends 'base.html' %}
+{%load crispy_forms_tags %}
 {% block content %}
     <form action="" method="POST">
         {% csrf_token %}
-        {{ form.as_table }}
-        <button type="create">Create Pizza</button>
+        {{form|crispy}}
+        <button type="create" class="btn btn-primary btn-block" active>Create Pizza</button>
     </form>
 {% endblock %}
+
+
+
+<!-- name, sizes, cheeses, Sauces, pep, ch, ham, pin, pep, mus, oni -->
