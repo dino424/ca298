@@ -63,7 +63,7 @@ class UserSignupView(CreateView):
 class UserLoginView(LoginView):
     template_name='login.html'
 
-
+@login_required(redirect_field_name="/")
 def logout_user(request):
     logout(request)
     return redirect("/")
@@ -73,7 +73,6 @@ def yourpizzas(request):
     user = request.user
     pizzas = Order.objects.filter(user=user)
     return render(request, 'yourpizzas.html', {'pizzas':pizzas})
-
 
 
 def view_created(request, orderid):

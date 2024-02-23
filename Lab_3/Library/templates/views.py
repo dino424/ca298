@@ -84,7 +84,7 @@ def locked_view(request):
 	pass
 
 def some_view(request):
-   user = rtequest.user
+   user = request.user
    if user.is_authenticated:
       pass
    else:
