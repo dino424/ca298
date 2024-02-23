@@ -9,7 +9,7 @@ from django.core.exceptions import ValidationError
 class PizzaForm(forms.ModelForm):
     class Meta:
         model = Pizza
-        fields = ['name', 'sizes', 'cheeses', 'sauces','toppings']
+        fields = ['name', 'sizes', 'cheeses', 'sauces', 'crusts', 'toppings']
         widgets = { 
             'toppings': forms.CheckboxSelectMultiple(attrs={'class': 'checkbox-class'}),
         }
@@ -36,6 +36,13 @@ class PizzaForm(forms.ModelForm):
         if not sauces:
             raise forms.ValidationError("Please select at least one sauce option.˖⁺‧₊˚ ♡ ˚₊‧⁺˖")
         return sauces
+
+    def clean_crusts(self):
+        sauces = self.cleaned_data.get('crusts')
+        if not sauces:
+            raise forms.ValidationError("Every pizza needs a crust .˖⁺‧₊˚ ♡ ˚₊‧⁺˖")
+        return sauces
+
 
 
 

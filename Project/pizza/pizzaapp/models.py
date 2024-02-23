@@ -66,6 +66,10 @@ class Pizza(models.Model):
         'Sauces',
         on_delete=models.CASCADE,
     )
+    crusts = models.ForeignKey(
+        'Crusts',
+        on_delete=models.CASCADE,
+    )
     toppings = models.ManyToManyField(Toppings)
 
 class Sizes(models.Model):
@@ -73,6 +77,10 @@ class Sizes(models.Model):
     def __str__(self):
         return self.name
     
+class Crusts(models.Model):
+    name = models.CharField(max_length= 20, default='normal')
+    def __str__(self):
+        return self.name
 
 class Cheeses(models.Model):
     name = models.CharField(max_length= 20, default='mozzarella')
