@@ -10,6 +10,8 @@ router.register(r'book', views.BookViewSet)
 router1 = routers.DefaultRouter()
 router1.register(r'author', views.AuthorViewSet)
 
+router2 = routers.DefaultRouter()
+router2.register(r'customer', views.CustomerViewSet)
 
 
 urlpatterns = [
@@ -26,5 +28,6 @@ urlpatterns = [
    path('logout/', views.logout_user, name="logout"),
    path('api/', include(router.urls)),
    path('api/', include(router1.urls)),
+   path('api/', include(router2.urls)),
    path('add', views.api_add, name='api_add'),
 ]

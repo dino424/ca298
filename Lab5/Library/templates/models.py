@@ -1,6 +1,10 @@
 from django.db import models
 from django.contrib.auth.models import AbstractUser, BaseUserManager
 
+class Customer(models.Model):
+    id = models.AutoField(primary_key=True)
+    name = models.TextField()
+
 class Author(models.Model):
     id = models.AutoField(primary_key=True)
     first_name = models.TextField()

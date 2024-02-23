@@ -127,7 +127,7 @@ def api_multiply(request):
 	resp_dict = {'result':sub}
 	return JsonResponse(resp_dict) 
 
-def api_subtract(request):
+def api_exponential(request):
 	num1 = float(request.GET.get('num1',1)) 
 	num2 = float(request.GET.get('num2',1))
 	sub = num1 ** num2
@@ -141,3 +141,7 @@ class BookViewSet(viewsets.ModelViewSet):
 class AuthorViewSet(viewsets.ModelViewSet):
 	serializer_class = AuthorSerializer
 	queryset = Author.objects.all()
+
+class CustomerViewSet(viewsets.ModelViewSet):
+	serializer_class = CustomerSerializer
+	queryset = Customer.objects.all()

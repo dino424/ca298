@@ -10,3 +10,9 @@ class AuthorSerializer(serializers.HyperlinkedModelSerializer):
 	class Meta:
 		model = Author
 		fields = ['id','last_name']
+
+
+class CustomerSerializer(serializers.HyperlinkedModelSerializer):
+	class Meta:
+		model = Customer
+		fields = ['id','name']
