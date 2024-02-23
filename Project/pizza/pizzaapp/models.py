@@ -91,6 +91,6 @@ class Order(models.Model):
     date_ordered = models.DateTimeField(auto_now_add=True)
     name = models.TextField()
     address = models.TextField()
-    card_number = models.IntegerField(default= 000000000000)
+    card_number = models.IntegerField()
     card_exp = CardExpiryField(('card expiry'))
-    card_cvv = models.IntegerField(default=000)
+    card_cvv = models.IntegerField()

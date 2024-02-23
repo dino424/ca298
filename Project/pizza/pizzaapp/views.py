@@ -11,10 +11,6 @@ import re
 def index(request):
     return render(request, 'index.html')
 
-def view_all_pizzas(request):
-    all_pizzas = Pizza.objects.all()
-    return render(request, 'all_pizzas.html', {'pizzas':all_pizzas})
-
 @login_required(redirect_field_name="login")
 def create_pizza(request):
     if request.method == "POST":
@@ -74,7 +70,7 @@ def yourpizzas(request):
     pizzas = Order.objects.filter(user=user)
     return render(request, 'yourpizzas.html', {'pizzas':pizzas})
 
-
+@login_required(redirect_field_name="/")
 def view_created(request, orderid):
     order = get_object_or_404(Order, id=orderid)
     return render(request, 'created.html', {'order':order})

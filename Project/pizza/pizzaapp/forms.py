@@ -13,6 +13,31 @@ class PizzaForm(forms.ModelForm):
         widgets = { 
             'toppings': forms.CheckboxSelectMultiple(attrs={'class': 'checkbox-class'}),
         }
+    def clean_name(self):
+        name = self.cleaned_data.get('name')
+        if not name:
+            raise forms.ValidationError("Your pizza nwants a name ૮ ˶ᵔ ᵕ ᵔ˶ ა ")
+        return name
+
+    def clean_sizes(self):
+        sizes = self.cleaned_data.get('sizes')
+        if not sizes:
+            raise forms.ValidationError("Please select at least one size (˶ᵔ ᵕ ᵔ˶) ")
+        return sizes
+
+    def clean_cheeses(self):
+        cheeses = self.cleaned_data.get('cheeses')
+        if not cheeses:
+            raise forms.ValidationError("Please select at least one cheese option ૮꒰ ˶• ༝ •˶꒱ა ♡")
+        return cheeses
+
+    def clean_sauces(self):
+        sauces = self.cleaned_data.get('sauces')
+        if not sauces:
+            raise forms.ValidationError("Please select at least one sauce option.˖⁺‧₊˚ ♡ ˚₊‧⁺˖")
+        return sauces
+
+
 
 class UserSignupForm(UserCreationForm):
     class Meta(UserCreationForm.Meta):
