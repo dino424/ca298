@@ -11,7 +11,13 @@
                 <h4> {{p.pizza.name}} ‧₊˚ ⋅ 𓐐𓎩 ‧₊˚ ⋅</h4>
                 <h5 class="card-title">Ordered on: {{p.date_ordered}}</h5>
                 <h6 class="card-subtitle mb-2 text-muted">{{p.pizza.sizes}} (∩˃ω˂∩) {{p.pizza.cheeses}}</h6>
-                <p class="card-text">{{p.pizza.sauces}}</p>
+                <p class="card-text">{{p.pizza.sauces}} base with {{p.pizza.crusts}} crust</p>
+                <p class="card-text">Toppings:
+                  {% for topping in p.pizza.toppings.all %}
+                      {{ topping.name }}
+                      {% if not forloop.last %}, {% endif %}
+                  {% endfor %}
+              </p>
             </div>
         </div>
     </div>
