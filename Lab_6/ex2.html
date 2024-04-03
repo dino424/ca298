@@ -1,0 +1,19 @@
+<html>
+    <head>
+
+    </head>
+    <body>
+        <p id = "myparagrah">example paragrah</p>
+        <button id = "mybutton"> click please </button>
+    </body>
+    <script>
+        let pTag = document.getElementById("myparagrah");
+        pTag.innerHTML="Hello from Javascript";
+
+        let bTag = document.getElementById("mybutton");
+        function changeColour() {
+            bTag.style.color = "red";
+        }
+        bTag.addEventListener('click', changeColour);
+    </script>
+</html>

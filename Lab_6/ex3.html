@@ -1,0 +1,28 @@
+<html>
+    <head>
+
+    </head>
+    <body>
+        <form id ="myform">
+            <label for="form-username-input">Your Username</label>
+            <input type="text" name="form-username-input" id="name-input" placeholder="Your username here">
+            <button type="submit">Submit</button>
+        </form>
+    </body>
+    <script>
+        
+        function formValidator(event){
+            event.preventDefault();
+            let username = document.getElementById("name-input").value;
+            if (username == ""){
+                alert("Username cannot be empty");
+            }else{
+                const paragrah = document.createElement("p");
+                paragrah.innerText = "Hello" + " " + username;
+                document.body.appendChild(paragrah);
+            }
+        }
+        let myform = document.getElementById("myform");
+        myform.addEventListener('submit', formValidator);
+    </script>
+</html>

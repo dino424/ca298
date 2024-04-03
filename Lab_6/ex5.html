@@ -1,0 +1,29 @@
+<html>
+    <head>
+    </head>
+    <body>
+
+        <ol id ="Tattoinelist">
+
+        </ol>
+        <script>
+            fetch('https://swapi.dev/api/planets/1')
+            .then(response => response.json())
+            .then(data => {
+                let name = data.name;
+                let diameter = data.diameter;
+                let climate = data.climate;
+                let terrain = data.terrain;
+                let population = data.population;
+
+                let info = document.getElementById("Tattoinelist");
+                let listelement = document.createElement('li');
+                listelement.textContent = `Name: ${name}, Diameter: ${diameter}, Cliamte: ${climate}, Terrain: ${terrain}, Population: ${population}`;
+
+                info.appendChild(listelement);
+
+            });
+
+        </script>
+    </body>
+</html>

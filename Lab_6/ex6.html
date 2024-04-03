@@ -1,0 +1,21 @@
+<html>
+    <head>
+    </head>
+    <body>
+        <button type="submit" id="mybutton">Click me</button>
+        <img id="myimage">
+        <script>
+            function showImage(event){
+                fetch('https://dog.ceo/api/breeds/image/random')
+                .then(response => response.json())
+                .then(data =>{
+                    let imgUrl = data.message;
+                    let imgTag = document.getElementById('myimage');
+                    imgTag.src = imgUrl;
+                });
+            }
+            let bTag = document.getElementById("mybutton");
+            bTag.addEventListener('click', showImage);
+        </script>
+    </body>
+</html>

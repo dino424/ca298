@@ -1,0 +1,34 @@
+<html>
+    <head>
+
+    </head>
+    <body>
+        <form id ="myform">
+            <label for="number-input">First Number</label>
+            <input type="number" name="number-input" id="first_num" placeholder="Input number">
+            <label for="number2-input">Second Number</label>
+            <input type="number" name="number2-input" id="second_num" placeholder="Input number">
+            <button type="submit">Submit</button>
+        </form>
+    </body>
+    <script>
+        
+        function formValidator(event){
+            event.preventDefault();
+            let num1 = document.getElementById("first_num").value;
+            let num2 =document.getElementById("second_num").value;
+            if(num1 == null || num2 == null){
+                alert("Both fields must be filled");
+            } else if (isNaN(num1) || isNaN(num2)){
+                alert("Must input two digits");
+            }else{
+                const paragrah = document.createElement("p");
+                let num3 = parseInt(num1) + parseInt(num2);
+                paragrah.innerText = "num1 + num2 =" + " " + num3;
+                document.body.appendChild(paragrah);
+            }
+        }
+        let myform = document.getElementById("myform");
+        myform.addEventListener('submit', formValidator);
+    </script>
+</html>
