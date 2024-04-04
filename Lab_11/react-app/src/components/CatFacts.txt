@@ -1,0 +1,18 @@
+import { useState } from "react";
+
+function CatFacts(){
+
+    const [facts, setfacts] = useState(["Cats are cool", "Cats are nice"])
+    const displayFacts = () =>{
+        return facts.map(elem=>
+            <li>{elem}</li>
+        )
+    }
+    return(
+        <ul id="catlist">
+            {displayFacts()}
+        </ul>
+    )
+}
+
+export default CatFacts;

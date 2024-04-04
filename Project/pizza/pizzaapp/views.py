@@ -6,7 +6,6 @@ from django.contrib.auth.views import LoginView
 from django.contrib.auth.decorators import login_required
 from .models import * 
 from .forms import * 
-import re
 
 def index(request):
     return render(request, 'index.html')
@@ -59,7 +58,7 @@ class UserSignupView(CreateView):
 class UserLoginView(LoginView):
     template_name='login.html'
 
-@login_required(redirect_field_name="/")
+@login_required(redirect_field_name="login")
 def logout_user(request):
     logout(request)
     return redirect("/")
