@@ -6,7 +6,7 @@ const Alldegrees = () => {
     <div> 
         <main>
             <h1>All degrees: </h1>
-            {ShowAllDegrees}
+            <ShowAllDegrees />
         </main>
     </div>
     );
